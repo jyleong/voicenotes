@@ -49,11 +49,13 @@ class WebSocket(WebSocketHandler):
     def handleReadingState(self, str):
         print("reading: ", str)
         begin, end = std.getDateUnix(str)
+        print(begin, end)
         notes = self.notes.findInRange(begin, end)
-        self.write_message(self.summarize(notes))
+        print(notes)
+        self.write_message(list(notes.values())[0])
         # expect str to be date time
         # when done reading, go to ready
-        # self.signalReady()
+        self.signalReady()
 
     def handleReadyState(self, str):
         if str == "read":
