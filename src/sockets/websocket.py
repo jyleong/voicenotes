@@ -1,7 +1,7 @@
 from tornado.websocket import WebSocketHandler
 from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
-from datedict import Notes
+from note import Notes
 import uuid
 
 DURATION_CONST = 20
