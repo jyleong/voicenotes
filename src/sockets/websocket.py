@@ -2,6 +2,7 @@ from tornado.websocket import WebSocketHandler
 from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
+import string_to_date as std
 import uuid
 
 DURATION_CONST = 20
@@ -37,10 +38,12 @@ class WebSocket(WebSocketHandler):
                 self.write_message("say read or write")
             return
         elif self.state is "reading":
+            begin, end = std.getDateUnix(str)
+            notes = note.findInRange(begin, end)
+            self.write_message(summarize(notes))
             # expect str to be date time
             # when done reading, go to ready
-            self.write_message("now reading. please wait")
-            self.signalReady()
+            # self.signalReady()
         elif self.state is "writing":
             if str == "DONE_BUTTON":
                 self.write_message("noted.")
