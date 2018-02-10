@@ -1,0 +1,101 @@
+/*heart is Shamelessly stolen from http://jsfiddle.net/nwznn/*/
+#heart {
+       position:relative;
+       width: 100px;
+       height: 90px;
+   top:10px;
+     }
+
+     #heart:before, #heart:after {
+       position: absolute;
+       content: "";
+       left: 50px;
+       top: 0;
+       width: 52px;
+       height: 80px;
+       background: red;/*This is where the red on the page is from*/
+       border-radius: 50px 50px 0 0;
+       -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+       -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+       transform: rotate(-45deg);
+      -webkit-transform-origin: 0 100%;
+      -moz-transform-origin: 0 100%;
+      -ms-transform-origin: 0 100%;
+      -o-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+    }
+
+     #heart:after {
+       left: 0;
+       -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transform-origin: 100% 100%;
+      -moz-transform-origin: 100% 100%;
+      -ms-transform-origin: 100% 100%;
+      -o-transform-origin: 100% 100%;
+      transform-origin :100% 100%;
+    }
+
+/*This is the inside of the heart.*/
+#heartInner {
+   position:relative;
+  top:-80px;
+       width: 100px;
+       height: 100px;
+     }
+
+     #heartInner:before{
+       position: absolute;
+       content: "";
+       left: 51px;
+       top: 0px;
+       width: 48px;
+       height: 78px;
+       background: white;
+       border-radius: 50px 50px 0 0;
+       -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+       -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+       transform: rotate(-45deg);
+      -webkit-transform-origin: 0 100%;
+      -moz-transform-origin: 0 100%;
+      -ms-transform-origin: 0 100%;
+      -o-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+    }
+#heartInner:after {
+position: absolute;
+       content: "";
+       margin-left: 5px;
+       margin-top: 1px;
+       width: 47px;
+       height: 76px;
+       background: white;
+       border-radius: 50px 50px 0 0;
+       -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+       -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+       transform: rotate(-45deg);
+
+}
+
+     #heartInner:after {
+       left: 0;
+       -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+      -webkit-transform-origin: 100% 100%;
+      -moz-transform-origin: 100% 100%;
+      -ms-transform-origin: 100% 100%;
+      -o-transform-origin: 100% 100%;
+      transform-origin :100% 100%;
+    }
