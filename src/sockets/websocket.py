@@ -11,6 +11,7 @@ class WebSocket(WebSocketHandler):
     countDown = None
     uuid = None
 
+    state = "greeting"
     '''
     Crucial methods to WebSocket class
     '''
@@ -22,6 +23,17 @@ class WebSocket(WebSocketHandler):
         self.sayGreetingsAndOptions()
 
     def on_message(self, str):
+        print("on_message: ", str)
+        if self.state is "greeting":
+            if str == "read":
+                self.write_message("now reading")
+                self.state = "reading"
+            elif str == "write":
+                self.write_message("now writing")
+                self.state = "writing"
+            else:
+                self.write_message("say read or write")
+            return
         userCmd = ProcessText.switch(str)
         if userCmd == "READ":
             ## goto read state
@@ -35,7 +47,9 @@ class WebSocket(WebSocketHandler):
 
         print("Socket closed.")
 
-
+    def sayGreetingsAndOptions(self):
+        self.write_message("Hello! Would you like to read or write?")
+        self.state = "greeting"
 
 
     def clearEventLoop(self):
