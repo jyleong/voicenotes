@@ -15,3 +15,5 @@ function toggleStandby(){
   $('#heart').css('animation', 'None');
   $('#heart').css('background-color', 'rgba(128,128,128,1)');
 }
+
+toggleListening();
