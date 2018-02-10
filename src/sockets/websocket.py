@@ -28,32 +28,46 @@ class WebSocket(WebSocketHandler):
     def on_message(self, str):
         print("on_message: ", str)
         if self.state is "ready":
-            if str == "read":
-                self.write_message("When would you like me to read?")
-                self.state = "reading"
-            elif str == "write" or str == "right":
-                self.write_message("What would you like to note?")
-                self.state = "writing"
-            else:
-                self.write_message("say read or write")
-            return
+            self.handleReadyState(str)
         elif self.state is "reading":
-            begin, end = std.getDateUnix(str)
-            notes = note.findInRange(begin, end)
-            self.write_message(summarize(notes))
-            # expect str to be date time
-            # when done reading, go to ready
-            # self.signalReady()
+            self.handleReadingState(str)
         elif self.state is "writing":
-            if str == "DONE_BUTTON":
-                self.write_message("noted.")
-                self.signalReady()
-                return
-            success = self.saveNote(str)
-            if not success:
-                self.write_message("could not write that last bit")
+            self.handleWritingState(str)
 
-        return str
+    def handleWritingState(self, str):
+        print("writing: ", str)
+        if str == "DONE_BUTTON":
+            self.write_message(note.lastNote)
+            # self.write_message("noted.")
+            self.signalReady()
+            return
+        success = self.saveNote(str)
+        print("writing success: ", success)
+        if not success:
+            self.write_message("could not write that last bit")
+
+    def handleReadingState(self, str):
+        print("reading: ", str)
+        begin, end = std.getDateUnix(str)
+        notes = self.notes.findInRange(begin, end)
+        self.write_message(self.summarize(notes))
+        # expect str to be date time
+        # when done reading, go to ready
+        # self.signalReady()
+
+    def handleReadyState(self, str):
+        if str == "read":
+            self.write_message("When would you like me to read?")
+            self.state = "reading"
+        elif str == "write" or str == "right":
+            self.write_message("What would you like to note?")
+            self.state = "writing"
+        else:
+            self.write_message("say read or write")
+        return
+
+    def summarize(self, arr):
+        return arr[0]
 
     def on_close(self):
 
@@ -67,15 +81,16 @@ class WebSocket(WebSocketHandler):
         self.write_message("Would you like to read or would you like to write?")
         self.state = "ready"
 
-    def saveNote(str):
-        if self.isLongEnough(str):
-            notes.pushNote(str)
-            return True
-        else:
+    def saveNote(self, str):
+        if not self.isValid(str):
+            print("saveNote isLongEnough")
             return False
+        self.notes.pushNote(str)
+        print("saveNote pushedNote")
+        return True
 
-    def isLongEnough(str):
-        return len(str) > 20
+    def isValid(self, str):
+        return len(str) > 10
 
     def clearEventLoop(self):
         self.eventLoop.stop()

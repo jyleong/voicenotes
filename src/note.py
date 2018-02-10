@@ -16,6 +16,9 @@ class Notes:
     def popNote(self, time):
         return self.noteDict.pop(time, "None")
 
+    def lastNote(self):
+        return self.noteDict[noteDict.keys()[-1]]
+
     def findInRange(self, begin, end):
         retDict = {}
         for key in self.noteDict:
