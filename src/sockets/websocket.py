@@ -4,6 +4,7 @@ from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
 import uuid
+from summarize import summarize
 
 DURATION_CONST = 20
 
@@ -69,7 +70,7 @@ class WebSocket(WebSocketHandler):
         return
 
     def summarize(self, arr):
-        return arr[0]
+        return summarize(arr)
 
     def on_close(self):
 
