@@ -13,7 +13,7 @@
        top: 0;
        width: 52px;
        height: 80px;
-       background: red;/*This is where the red on the page is from*/
+       
        border-radius: 50px 50px 0 0;
        -webkit-transform: rotate(-45deg);
        -moz-transform: rotate(-45deg);
