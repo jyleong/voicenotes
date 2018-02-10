@@ -1,45 +1,59 @@
 /*heart is Shamelessly stolen from http://jsfiddle.net/nwznn/*/
-#heart {
+
+/*can't seem to modify pseudo-styles with jquery easily - doing the easy way by making a bunch of styles specific to colors.*/
+.heart {
        position:relative;
        width: 100px;
        height: 90px;
-   top:10px;
+       top:10px;
      }
 
-     #heart:before, #heart:after {
-       position: absolute;
-       content: "";
-       left: 50px;
-       top: 0;
-       width: 52px;
-       height: 80px;
-       
-       border-radius: 50px 50px 0 0;
-       -webkit-transform: rotate(-45deg);
-       -moz-transform: rotate(-45deg);
-       -ms-transform: rotate(-45deg);
-       -o-transform: rotate(-45deg);
-       transform: rotate(-45deg);
-      -webkit-transform-origin: 0 100%;
-      -moz-transform-origin: 0 100%;
-      -ms-transform-origin: 0 100%;
-      -o-transform-origin: 0 100%;
-      transform-origin: 0 100%;
-    }
+#heartSpeaking:before, #heartSpeaking:after{
+  background: red;
+}
+#heartStandby:before, #heartStandby:after{
+  background: rgba(128,128,128,1);
+}
+#heartListening:before, #heartListening:after{
+  background: rgba(101, 255, 120, 0.8);
+}
+#heartThinking:before, #heartThinking:after{
+  background: yellow;
+}
 
-     #heart:after {
-       left: 0;
-       -webkit-transform: rotate(45deg);
-       -moz-transform: rotate(45deg);
-       -ms-transform: rotate(45deg);
-       -o-transform: rotate(45deg);
-      transform: rotate(45deg);
-      -webkit-transform-origin: 100% 100%;
-      -moz-transform-origin: 100% 100%;
-      -ms-transform-origin: 100% 100%;
-      -o-transform-origin: 100% 100%;
-      transform-origin :100% 100%;
-    }
+.heart:before, .heart:after {
+   position: absolute;
+   content: "";
+   left: 50px;
+   top: 0;
+   width: 52px;
+   height: 80px;
+   border-radius: 50px 50px 0 0;
+   -webkit-transform: rotate(-45deg);
+   -moz-transform: rotate(-45deg);
+   -ms-transform: rotate(-45deg);
+   -o-transform: rotate(-45deg);
+   transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -o-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
+.heart:after {
+   left: 0;
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin :100% 100%;
+}
 
 /*This is the inside of the heart.*/
 #heartInner {
