@@ -1,6 +1,7 @@
 from tornado.websocket import WebSocketHandler
 from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
+
 import uuid
 
 DURATION_CONST = 20
@@ -34,13 +35,10 @@ class WebSocket(WebSocketHandler):
             else:
                 self.write_message("say read or write")
             return
-        userCmd = ProcessText.switch(str)
-        if userCmd == "READ":
-            ## goto read state
-            return
-        else:
-            ## goto write state
-            return
+        elif self.state is "reading":
+            self.write_message("now reading. please wait")
+        elif self.state is "writing":
+            self.write_message("now writing. please wait")
         return str
 
     def on_close(self):
