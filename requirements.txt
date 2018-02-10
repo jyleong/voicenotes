@@ -44,3 +44,4 @@ WTForms==2.1
 dateparser #date parsing
 rake-nltk
 moment
+recurrent

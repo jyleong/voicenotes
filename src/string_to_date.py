@@ -1,10 +1,18 @@
 import dateparser
+from recurrent import RecurringEvent
 import moment
 
 
 # returns ranges for days, weeks, months
 def getDate(inputString):
-    return moment.date(inputString).timezone("UTC").zero.date
+    temp = None
+    try:
+        temp = moment.date(inputString).timezone("UTC").zero.date
+    except:
+        r = RecurringEvent(now_date=moment.date("january 1").date)
+        temp = moment.date(r.parse(inputString)).timezone("UTC").zero.date
+
+    return temp
 
 
 def getOffset(inputTimeUnit):
@@ -26,8 +34,8 @@ def getDateUnix(inputString):
         return (start, start + getOffset("week") - 1)
     elif "month" in inputString:
         return (start, getDateUnix("yesterday")[1])
-
-    return None
+    else:
+        return (start, int(moment.now().date.timestamp()))
 
 
 def test():
