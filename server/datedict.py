@@ -6,25 +6,25 @@ import time
 #{eatetime: int, data:str}
 
 class Notes:
-    noteDict = {}
+    dataDict = {}
     def __init__(self):
-        self.noteDict = makeDummyNotes()
+        self.dataDict = makeDummyNotes()
 
     def pushNote(self, note):
-        self.noteDict[int(time.time())] = note
+        self.dataDict[int(time.time())] = note
 
     def popNote(self, time):
-        return self.noteDict.pop(time, "None")
+        return self.dataDict.pop(time, "None")
 
     def findInRange(self, begin, end):
         retDict = {}
-        for key in self.noteDict:
+        for key in self.dataDict:
             if key >= begin and key <= end:
-                retDict[key] = self.noteDict[key]
+                retDict[key] = self.dataDict[key]
         return retDict
 
     def getAll(self):
-        return self.noteDict
+        return self.dataDict
 
 def makeDummyNotes():
     dummyNotes = {
@@ -34,3 +34,5 @@ def makeDummyNotes():
             1518206421: "tomorrow I'm going to a hackathon so I'd better not get too drunk.",
             1518292578: "today I was pulled over by the cops on the way to a hackathon and got a speeding ticket"}
     return dummyNotes
+
+newNotes = Notes()
