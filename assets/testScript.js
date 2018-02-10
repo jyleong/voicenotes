@@ -29,6 +29,7 @@ function cleanHeartClasses(){
   $("div.heart").first().removeClass("heartThinking");
   $("div.heart").first().removeClass("heartListening");
   $("div.heart").first().removeClass("animation");
+  $("div.heart").first().removeClass("animation");
 }
 toggleSpeaking();
 //$("div.heart").css(background-color, "black");
