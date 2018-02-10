@@ -1,5 +1,7 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
+# from nltk.stem import PorterStemmer
+# ps = PorterStemmer()
 
 stopWords = set(stopwords.words("english"))
 
@@ -8,8 +10,8 @@ mockstr = ["Water shows its colour when it gathers As a handful of thought, clea
 txt = ".".join([item for item in mockstr])
 words = word_tokenize(txt)
 
-print("txt", txt)
-print("==============================================================")
+# print("txt", txt)
+# print("==============================================================")
 
 freqTable = dict()
 for word in words:
