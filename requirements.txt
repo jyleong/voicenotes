@@ -41,7 +41,6 @@ Werkzeug==0.12.2
 WTForms==2.1
 
 #eric's stuff
-recurrent
 dateparser #date parsing
 rake-nltk
-freezegun #for date mocking
+moment
