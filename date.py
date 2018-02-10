@@ -25,7 +25,7 @@ def getDateUnix(inputString):
     elif "week" in inputString:
         return (start, start + getOffset("week") - 1)
     elif "month" in inputString:
-        return (start, start + getOffset("month") - 1)
+        return (start, getDateUnix("yesterday")[1])
 
     return None
 
