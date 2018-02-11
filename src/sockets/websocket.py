@@ -4,12 +4,12 @@ from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
 import uuid
-from summarize import summarizeArr
+from summarize import summarize
 
 DURATION_CONST = 20
 
-
 class WebSocket(WebSocketHandler):
+
     eventLoop = None
     countDown = None
     uuid = None
@@ -19,7 +19,6 @@ class WebSocket(WebSocketHandler):
     '''
     Crucial methods to WebSocket class
     '''
-
     def check_origin(self, origin):
         return True
 
@@ -38,7 +37,7 @@ class WebSocket(WebSocketHandler):
 
     def handleWritingState(self, str):
         print("writing: ", str)
-        if "end note" in str:
+        if "endnote" in str:
             # self.write_message(note.lastNote)
             self.write_message("noted.")
             self.signalReady()
@@ -50,11 +49,21 @@ class WebSocket(WebSocketHandler):
 
     def handleReadingState(self, str):
         print("reading: ", str)
-        begin, end = std.getDateUnix(str)
+        dateRange = std.getDateUnix(str)
+        if dateRange is None:
+            self.write_message("Could not recognize that timeframe")
+            return
+
+        begin, end = dateRange
         print(begin, end)
         notes = self.notes.findInRange(begin, end)
+
+        if not notes:
+            self.write_message("Could not find notes in that time")
+            return
+
         print(notes)
-        self.write_message(summarizeArr(list(notes.values())))
+        self.write_message(list(notes.values())[0])
         # expect str to be date time
         # when done reading, go to ready
         self.signalReady()
@@ -67,8 +76,11 @@ class WebSocket(WebSocketHandler):
             self.write_message("What would you like to note?")
             self.state = "writing"
         else:
-            self.write_message("say read or write")
+            self.write_message("say reed or write")
         return
+
+    def summarize(self, arr):
+        return summarize(arr)
 
     def on_close(self):
 
