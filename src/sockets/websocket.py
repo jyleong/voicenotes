@@ -53,7 +53,7 @@ class WebSocket(WebSocketHandler):
         print(begin, end)
         notes = self.notes.findInRange(begin, end)
         print(notes)
-        self.write_message(list(notes.values())[0])
+        self.write_message(summarize(list(notes.values())))
         # expect str to be date time
         # when done reading, go to ready
         self.signalReady()
@@ -68,9 +68,6 @@ class WebSocket(WebSocketHandler):
         else:
             self.write_message("say read or write")
         return
-
-    def summarize(self, arr):
-        return summarize(arr)
 
     def on_close(self):
 
