@@ -49,6 +49,10 @@ class WebSocket(WebSocketHandler):
 
     def handleReadingState(self, str):
         print("reading: ", str)
+        if str == "just now":
+            self.write_message(self.notes.lastNote())
+            self.signalReady()
+            return
         dateRange = std.getDateUnix(str)
         if dateRange is None:
             self.write_message("Could not recognize that timeframe")
