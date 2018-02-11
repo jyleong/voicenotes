@@ -50,8 +50,7 @@ WTForms==2.1
 
 
 #eric's stuff
-dateparser #date parsing
-rake-nltk
 moment
 recurrent
 freeze-gun
+sumy
