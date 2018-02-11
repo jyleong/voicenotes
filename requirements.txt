@@ -52,3 +52,4 @@ WTForms==2.1
 #eric's stuff
 recurrent
 sumy
+numpy
