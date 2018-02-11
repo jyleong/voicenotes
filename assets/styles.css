@@ -2,30 +2,84 @@
 
 /*can't seem to modify pseudo-styles with jquery easily - doing the easy way by making a bunch of styles specific to colors.*/
 .heart {
-       position:relative;
-       width: 100px;
-       height: 90px;
-       top:10px;
-     }
+ position:absolute;
+ width: 100px;
+ height: 90px;
+ top: 200px;
 
-#heartSpeaking:before, #heartSpeaking:after{
+ width: 1em;
+ height: 1em;
+ border-radius: 50%;
+ /*-webkit-animation: rippleRed 0.7s linear infinite;*/
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+
+.heartSpeaking, .heartListening, .heartStandby, .heartThinking{}
+
+  @-webkit-keyframes rippleGreen {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(101, 255, 120, 0.3), 0 0 0 1em rgba(101, 255, 120, 0.3), 0 0 0 3em rgba(101, 255, 120, 0.3), 0 0 0 5em rgba(101, 255, 120, 0.3);
+              box-shadow: 0 0 0 0 rgba(101, 255, 120, 0.3), 0 0 0 1em rgba(101, 255, 120, 0.3), 0 0 0 3em rgba(101, 255, 120, 0.3), 0 0 0 5em rgba(101, 255, 120, 0.3);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 1em rgba(101, 255, 120, 0.3), 0 0 0 3em rgba(101, 255, 120, 0.3), 0 0 0 5em rgba(101, 255, 120, 0.3), 0 0 0 8em rgba(101, 255, 120, 0);
+              box-shadow: 0 0 0 1em rgba(101, 255, 120, 0.3), 0 0 0 3em rgba(101, 255, 120, 0.3), 0 0 0 5em rgba(101, 255, 120, 0.3), 0 0 0 8em rgba(101, 255, 120, 0);
+    }
+  }
+
+  @-webkit-keyframes rippleRed {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.3), 0 0 0 1em rgba(255, 0, 0, 0.3), 0 0 0 3em rgba(255, 0, 0, 0.3), 0 0 0 5em rgba(255, 0, 0, 0.3);
+              box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.3), 0 0 0 1em rgba(255, 0, 0, 0.3), 0 0 0 3em rgba(255, 0, 0, 0.3), 0 0 0 5em rgba(255, 0, 0, 0.3);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 1em rgba(255, 0, 0, 0.3), 0 0 0 3em rgba(255, 0, 0, 0.3), 0 0 0 5em rgba(255, 0, 0, 0.3), 0 0 0 8em rgba(255, 0, 0, 0);
+              box-shadow: 0 0 0 1em rgba(255, 0, 0, 0.3), 0 0 0 3em rgba(255, 0, 0, 0.3), 0 0 0 5em rgba(255, 0, 0, 0.3), 0 0 0 8em rgba(255, 0, 0, 0);
+    }
+  }
+
+  @-webkit-keyframes rippleYellow {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 51, 0.3), 0 0 0 1em rgba(255, 255, 51, 0.3), 0 0 0 3em rgba(255, 255, 51, 0.3), 0 0 0 5em rgba(255, 255, 51, 0.3);
+              box-shadow: 0 0 0 0 rgba(255, 255, 51, 0.3), 0 0 0 1em rgba(255, 255, 51, 0.3), 0 0 0 3em rgba(255, 255, 51, 0.3), 0 0 0 5em rgba(255, 255, 51, 0.3);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 1em rgba(255, 255, 51, 0.3), 0 0 0 3em rgba(255, 255, 51, 0.3), 0 0 0 5em rgba(255, 255, 51, 0.3), 0 0 0 8em rgba(255, 255, 51, 0);
+              box-shadow: 0 0 0 1em rgba(255, 255, 51, 0.3), 0 0 0 3em rgba(255, 255, 51, 0.3), 0 0 0 5em rgba(255, 255, 51, 0.3), 0 0 0 8em rgba(255, 255, 51, 0);
+    }
+  }
+
+
+
+.heartSpeaking:before, .heartSpeaking:after{
   background: red;
 }
-#heartStandby:before, #heartStandby:after{
+.heartStandby:before, .heartStandby:after{
   background: rgba(128,128,128,1);
 }
-#heartListening:before, #heartListening:after{
+.heartListening:before, .heartListening:after{
   background: rgba(101, 255, 120, 0.8);
 }
-#heartThinking:before, #heartThinking:after{
+.heartThinking:before, .heartThinking:after{
   background: yellow;
 }
 
 .heart:before, .heart:after {
    position: absolute;
    content: "";
-   left: 50px;
-   top: 0;
+   left: 7px;
    width: 52px;
    height: 80px;
    border-radius: 50px 50px 0 0;
@@ -42,7 +96,8 @@
 }
 
 .heart:after {
-   left: 0;
+
+   left: -44px;
    -webkit-transform: rotate(45deg);
    -moz-transform: rotate(45deg);
    -ms-transform: rotate(45deg);
@@ -58,18 +113,18 @@
 /*This is the inside of the heart.*/
 #heartInner {
    position:relative;
-  top:-80px;
-       width: 100px;
-       height: 100px;
-     }
+
+   width: 100px;
+   height: 100px;
+}
 
      #heartInner:before{
        position: absolute;
        content: "";
-       left: 51px;
-       top: 0px;
-       width: 48px;
-       height: 78px;
+       left: 50px;
+       width: 45px;
+       top: -8px;
+       height: 75px;
        background: white;
        border-radius: 50px 50px 0 0;
        -webkit-transform: rotate(-45deg);
@@ -87,9 +142,9 @@
 position: absolute;
        content: "";
        margin-left: 5px;
-       margin-top: 1px;
-       width: 47px;
-       height: 76px;
+       top: -8px;
+       width: 45px;
+       height: 75px;
        background: white;
        border-radius: 50px 50px 0 0;
        -webkit-transform: rotate(-45deg);
