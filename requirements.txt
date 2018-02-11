@@ -50,7 +50,5 @@ WTForms==2.1
 
 
 #eric's stuff
-moment
 recurrent
-freeze-gun
 sumy
