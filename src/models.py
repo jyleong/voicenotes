@@ -3,15 +3,23 @@
 
 # file for all our database related python objects, used for ORM
 
-from src.app_file import db
+import os
 
-class User(db.Model):
+from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+
+Base = declarative_base()
+engine = create_engine(os.environ['development_db'])
+
+class User(Base):
     """The test case table in mera_db"""
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(60))
-    socketInstanceId = db.Column(db.String(60)) # to store the uuid that maps to a websocket instance
+    id = Column(Integer, primary_key=True)
+    name = Column(String(60))
+    socketInstanceId = Column(String(60)) # to store the uuid that maps to a websocket instance
 
 
     def __init__(self, name):
