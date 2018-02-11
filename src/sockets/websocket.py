@@ -4,12 +4,12 @@ from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
 import uuid
-from summarize import summarize
+from summarize import summarizeArr
 
 DURATION_CONST = 20
 
-class WebSocket(WebSocketHandler):
 
+class WebSocket(WebSocketHandler):
     eventLoop = None
     countDown = None
     uuid = None
@@ -19,6 +19,7 @@ class WebSocket(WebSocketHandler):
     '''
     Crucial methods to WebSocket class
     '''
+
     def check_origin(self, origin):
         return True
 
@@ -53,7 +54,7 @@ class WebSocket(WebSocketHandler):
         print(begin, end)
         notes = self.notes.findInRange(begin, end)
         print(notes)
-        self.write_message(summarize(list(notes.values())))
+        self.write_message(summarizeArr(list(notes.values())))
         # expect str to be date time
         # when done reading, go to ready
         self.signalReady()
