@@ -1,6 +1,7 @@
 import dateparser
-from recurrent import RecurringEvent
 import moment
+from recurrent import RecurringEvent
+# from freezegun import freeze_time
 
 
 # returns ranges for days, weeks, months
@@ -26,7 +27,10 @@ def getOffset(inputTimeUnit):
 
 def getDateUnix(inputString):
     # stringParts = inputString.split()
-    start = int(getDate(inputString).timestamp())
+    try:
+        start = int(getDate(inputString).timestamp())
+    except:
+        return None
 
     if "day" in inputString:
         return (start, start + getOffset("day") - 1)
@@ -37,7 +41,10 @@ def getDateUnix(inputString):
     else:
         return (start, int(moment.now().date.timestamp()))
 
+def getCurrentTime():
+    return int(moment.now().date.timestamp())
 
+# @freeze_time("2018-02-10")
 def test():
     # assumes dates is feb 10, 2018
     testcases = ["yesterday", "last week", "last month"]
@@ -58,6 +65,14 @@ def test():
     for i in range(len(testcases)):
         print(testcases[i], getDateUnix(testcases[i]), expected[i])
         assert (getDateUnix(testcases[i]) == expected[i])
+
+
+    assert(getDateUnix("feb 1st")[0] == getDateUnix("feb first")[0])
+    assert(-2 < (getDateUnix("feb 1st")[1] - getDateUnix("feb first")[1]) < 2)
+
+
+    assert((getDateUnix("an hour ago")[0] - (getCurrentTime() - getOffset("hour"))) < 2)
+    assert((getDateUnix("an hour ago")[1] - moment.now().date.timestamp()) < 2 )
 
 
 if __name__ == "__main__":
