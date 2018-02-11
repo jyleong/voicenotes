@@ -76,10 +76,10 @@ class WebSocket(WebSocketHandler):
         self.signalReady()
 
     def handleReadyState(self, str):
-        if str == "read":
+        if str == "read" or str == "read read":
             self.write_message("When would you like me to read?")
             self.state = "reading"
-        elif str == "write" or str == "right":
+        elif str == "write" or str == "right" or str == "right right":
             self.write_message("What would you like to note?")
             self.state = "writing"
         else:
