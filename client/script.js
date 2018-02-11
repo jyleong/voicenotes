@@ -24,7 +24,8 @@ if (hasUserMedia()) {
       Globals
 ------------------------------*/
 var GLOBAL_LIST = [];
-var socket = new WebSocket("wss://voiceminder.localtunnel.me/websocket/");
+var socket = new WebSocket("wss://voicenote.localtunnel.me/websocket/");
+
 // var socket = new WebSocket("wss://tornado.localtunnel.me/websocket/");
 var noteTextarea = $('#note-textarea');
 var instructions = $('#recording-instructions');
@@ -320,4 +321,9 @@ function toggleSpeaking(){
 function toggleStandby(){
   $('#trafficlight').css('animation', 'None');
   $('#trafficlight').css('background-color', 'rgba(128,128,128,1)');
+}
+
+function endNote() {
+  console.log("endNote");
+  socket.send("DONE_BUTTON")
 }

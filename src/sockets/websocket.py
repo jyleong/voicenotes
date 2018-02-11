@@ -37,9 +37,9 @@ class WebSocket(WebSocketHandler):
 
     def handleWritingState(self, str):
         print("writing: ", str)
-        if str == "DONE_BUTTON":
-            self.write_message(note.lastNote)
-            # self.write_message("noted.")
+        if "end note" in str:
+            # self.write_message(note.lastNote)
+            self.write_message("noted.")
             self.signalReady()
             return
         success = self.saveNote(str)
