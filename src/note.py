@@ -1,4 +1,4 @@
-import time
+import time, ipdb
 
 #want this dict into a class so that we may swap out this implementation later.
 
@@ -18,6 +18,12 @@ class Notes:
 
     def lastNote(self):
         return list(self.noteDict.values())[-1]
+
+    def lastBunchofNotes(self):
+        if len(self.noteDict) > 10:
+            return list(self.noteDict.values())[-10:]
+        else:
+            return list(self.noteDict.values())[-1:]
 
     def findInRange(self, begin, end):
         retDict = {}

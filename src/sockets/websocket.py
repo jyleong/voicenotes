@@ -6,6 +6,8 @@ import string_to_date as std
 import uuid
 from summarize import summarizeArr
 
+import ipdb
+
 DURATION_CONST = 20
 
 class WebSocket(WebSocketHandler):
@@ -50,7 +52,8 @@ class WebSocket(WebSocketHandler):
     def handleReadingState(self, str):
         print("reading: ", str)
         if str == "just now":
-            self.write_message(self.notes.lastNote())
+            summary = summarizeArr(self.notes.lastBunchofNotes())
+            self.write_message(summary)
             self.signalReady()
             return
         dateRange = std.getDateUnix(str)
@@ -67,7 +70,7 @@ class WebSocket(WebSocketHandler):
             return
 
         print(notes)
-        self.write_message(list(notes.values())[0])
+        self.write_message(summarizeArr(list(notes.values() ) ) )
         # expect str to be date time
         # when done reading, go to ready
         self.signalReady()
