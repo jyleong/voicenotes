@@ -4,7 +4,7 @@ import moment
 # returns ranges for days, weeks, months
 def getDate(inputString):
     try:
-        return moment.date(inputString).timezone("UTC").date
+        return moment.date(inputString).date
     except:
         return None
 
