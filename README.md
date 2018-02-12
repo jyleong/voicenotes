@@ -66,6 +66,6 @@ Once voicenotes database has been created, now you can go to the your virtual en
 
 install localtunnel via localtunnel.me
 launch in terminal
-> lt -s voicenotes -p 5000
+> lt -s voicenote -p 5000
 
-This launches api as https://voicenotes.localtunnel.me
+This launches api as https://voicenote.localtunnel.me
