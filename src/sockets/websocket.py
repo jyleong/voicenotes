@@ -3,10 +3,8 @@ from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
-import uuid
-from summarize import summarizeArr
+from summarize import summarize, summarizeArr
 
-import ipdb
 
 DURATION_CONST = 20
 

@@ -6,27 +6,27 @@
 import os
 
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 
 Base = declarative_base()
 engine = create_engine(os.environ['development_db'])
 
-class User(Base):
-    """The test case table in mera_db"""
-    __tablename__ = "users"
+class Message(Base):
+    """The message table in mera_db"""
+    __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(60))
-    socketInstanceId = Column(String(60)) # to store the uuid that maps to a websocket instance
+    messageContent = Column(String(255))
 
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, text):
+        self.messageContent = text
 
-    def getSocketInstanceId(self):
-        return self.socketInstanceId
+session = sessionmaker()
+session.configure(bind=engine)
+Base.metadata.create_all(engine)
 
-    def setSocketInstanceId(self, socketInstanceId):
-        self.socketInstanceId = socketInstanceId
+
+
