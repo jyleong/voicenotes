@@ -122,7 +122,6 @@ body {
 #heartInner p{
   position:sticky;
   text-align: center;
-  top: -50px;
   z-index: 1;
 }
 
