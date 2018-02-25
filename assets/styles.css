@@ -81,6 +81,7 @@ body {
    content: "";
    left: 7px;
    width: 52px;
+   top:-28px;
    height: 80px;
    border-radius: 50px 50px 0 0;
    -webkit-transform: rotate(-45deg);
@@ -96,7 +97,11 @@ body {
 }
 
 .heart:after {
+<<<<<<< HEAD
+  top:-28px;
+=======
 
+>>>>>>> 4cfc6bc287ff2e8cabbd5761cee4b82c15039504
    left: -44px;
    -webkit-transform: rotate(45deg);
    -moz-transform: rotate(45deg);
@@ -118,12 +123,18 @@ body {
    height: 100px;
 }
 
+#heartInner p{
+  position:sticky;
+  text-align: center;
+  z-index: 1;
+}
+
      #heartInner:before{
        position: absolute;
        content: "";
        left: 50px;
        width: 45px;
-       top: -8px;
+       top: -34px;
        height: 75px;
        background: white;
        border-radius: 50px 50px 0 0;
@@ -142,7 +153,7 @@ body {
 position: absolute;
        content: "";
        margin-left: 5px;
-       top: -8px;
+       top: -34px;
        width: 45px;
        height: 75px;
        background: white;
@@ -157,6 +168,7 @@ position: absolute;
 
      #heartInner:after {
        left: 0;
+
        -webkit-transform: rotate(45deg);
        -moz-transform: rotate(45deg);
        -ms-transform: rotate(45deg);
