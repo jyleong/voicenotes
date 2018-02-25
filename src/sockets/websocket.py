@@ -1,9 +1,11 @@
 from tornado.websocket import WebSocketHandler
 from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
+import os
 from note import Notes
 import string_to_date as std
 from summarize import summarize, summarizeArr
+from src.models import Message
 
 
 DURATION_CONST = 20
@@ -24,6 +26,7 @@ class WebSocket(WebSocketHandler):
 
     def open(self):
         print("SERVER: On new connection!")
+
         self.sayGreetingsAndOptions()
 
     def on_message(self, str):
