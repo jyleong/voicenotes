@@ -77,6 +77,12 @@ Apply migration
 
 ```
 
+Run message seeding:
+```
+(voicenotes) > python3 src/seeds/seed.py
+
+```
+
 Execute voicenotes
 ```
 (voicenotes) > python3 src/run.py
