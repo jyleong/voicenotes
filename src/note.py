@@ -17,7 +17,13 @@ class Notes:
         return self.noteDict.pop(time, "None")
 
     def lastNote(self):
-        return self.noteDict[noteDict.keys()[-1]]
+        return list(self.noteDict.values())[-1]
+
+    def lastBunchofNotes(self):
+        if len(self.noteDict) > 10:
+            return list(self.noteDict.values())[-10:]
+        else:
+            return list(self.noteDict.values())[-1:]
 
     def findInRange(self, begin, end):
         retDict = {}

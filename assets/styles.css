@@ -97,7 +97,11 @@ body {
 }
 
 .heart:after {
+<<<<<<< HEAD
   top:-28px;
+=======
+
+>>>>>>> 4cfc6bc287ff2e8cabbd5761cee4b82c15039504
    left: -44px;
    -webkit-transform: rotate(45deg);
    -moz-transform: rotate(45deg);

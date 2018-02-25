@@ -3,10 +3,16 @@ from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
-import uuid
-from summarize import summarize
+from summarize import summarizeArr
+from src.models import Messages
+import model
 
-DURATION_CONST = 20
+model.Database.setup(
+        host="localhost",
+        database="voicenotes",
+        user="root",
+        password=""
+    )
 
 class WebSocket(WebSocketHandler):
 
@@ -24,10 +30,19 @@ class WebSocket(WebSocketHandler):
 
     def open(self):
         print("SERVER: On new connection!")
+
         self.sayGreetingsAndOptions()
 
     def on_message(self, str):
         print("on_message: ", str)
+
+        message = Messages()
+        message.messageContent = str
+        message.save()
+        queryExample = Messages.query().first()
+
+        print("{}: {}".format(queryExample.id, queryExample.messageContent))
+
         if self.state is "ready":
             self.handleReadyState(str)
         elif self.state is "reading":
@@ -37,9 +52,9 @@ class WebSocket(WebSocketHandler):
 
     def handleWritingState(self, str):
         print("writing: ", str)
-        if str == "DONE_BUTTON":
-            self.write_message(note.lastNote)
-            # self.write_message("noted.")
+        if "endnote" in str:
+            # self.write_message(note.lastNote)
+            self.write_message("noted.")
             self.signalReady()
             return
         success = self.saveNote(str)
@@ -49,28 +64,40 @@ class WebSocket(WebSocketHandler):
 
     def handleReadingState(self, str):
         print("reading: ", str)
-        begin, end = std.getDateUnix(str)
+        if str == "just now":
+            summary = summarizeArr(self.notes.lastBunchofNotes())
+            self.write_message(summary)
+            self.signalReady()
+            return
+        dateRange = std.getDateUnix(str)
+        if dateRange is None:
+            self.write_message("Could not recognize that timeframe")
+            return
+
+        begin, end = dateRange
         print(begin, end)
         notes = self.notes.findInRange(begin, end)
+
+        if not notes:
+            self.write_message("Could not find notes in that time")
+            return
+
         print(notes)
-        self.write_message(list(notes.values())[0])
+        self.write_message(summarizeArr(list(notes.values() ) ) )
         # expect str to be date time
         # when done reading, go to ready
         self.signalReady()
 
     def handleReadyState(self, str):
-        if str == "read":
+        if str == "read" or str == "read read":
             self.write_message("When would you like me to read?")
             self.state = "reading"
-        elif str == "write" or str == "right":
+        elif str == "write" or str == "right" or str == "right right":
             self.write_message("What would you like to note?")
             self.state = "writing"
         else:
-            self.write_message("say read or write")
+            self.write_message("say reed or write")
         return
-
-    def summarize(self, arr):
-        return summarize(arr)
 
     def on_close(self):
 
