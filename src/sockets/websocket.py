@@ -1,14 +1,18 @@
 from tornado.websocket import WebSocketHandler
 from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
-import os
 from note import Notes
 import string_to_date as std
-from summarize import summarize, summarizeArr
-from src.models import Message
+from summarize import summarizeArr
+from src.models import Messages
+import model
 
-
-DURATION_CONST = 20
+model.Database.setup(
+        host="localhost",
+        database="voicenotes",
+        user="root",
+        password=""
+    )
 
 class WebSocket(WebSocketHandler):
 
@@ -31,6 +35,14 @@ class WebSocket(WebSocketHandler):
 
     def on_message(self, str):
         print("on_message: ", str)
+
+        message = Messages()
+        message.messageContent = str
+        message.save()
+        queryExample = Messages.query().first()
+
+        print("{}: {}".format(queryExample.id, queryExample.messageContent))
+
         if self.state is "ready":
             self.handleReadyState(str)
         elif self.state is "reading":
