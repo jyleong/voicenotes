@@ -3,12 +3,16 @@ from textProcessing.ProcessText import ProcessText
 from asynchronous.countdown import EventLoop, Countdown
 from note import Notes
 import string_to_date as std
-import uuid
 from summarize import summarizeArr
+from src.models import Messages
+import model
 
-import ipdb
-
-DURATION_CONST = 20
+model.Database.setup(
+        host="localhost",
+        database="voicenotes",
+        user="root",
+        password=""
+    )
 
 class WebSocket(WebSocketHandler):
 
@@ -26,10 +30,19 @@ class WebSocket(WebSocketHandler):
 
     def open(self):
         print("SERVER: On new connection!")
+
         self.sayGreetingsAndOptions()
 
     def on_message(self, str):
         print("on_message: ", str)
+
+        message = Messages()
+        message.messageContent = str
+        message.save()
+        queryExample = Messages.query().first()
+
+        print("{}: {}".format(queryExample.id, queryExample.messageContent))
+
         if self.state is "ready":
             self.handleReadyState(str)
         elif self.state is "reading":

@@ -58,14 +58,38 @@ mysql -u username -p
 CREATE DATABASE voicenotes;
 ```
 Once voicenotes database has been created, now you can go to the your virtual environment
+Navigate to src/ folder
+Apply current migrations
+
 ```
-(voicenotes) > python3 src/manage.py db upgrade
-(voicenotes) > python3 src/manage.py seed
+(voicenotes) > alembic upgrade head
+```
+
+Create new migrations:
+```
+(voicenotes) > alembic revision -m "add comment here"
+```
+This creates a blank migration file under src/alembic/versions
+Fill out the migration
+Apply migration
+```
+(voicenotes) > alembic upgrade head
+
+```
+
+Run message seeding:
+```
+(voicenotes) > python3 src/seeds/seed.py
+
+```
+
+Execute voicenotes
+```
 (voicenotes) > python3 src/run.py
 ```
 
 install localtunnel via localtunnel.me
 launch in terminal
-> lt -s voicenotes -p 5000
+> lt -s voicenote -p 5000
 
-This launches api as https://voicenotes.localtunnel.me
+This launches api as https://voicenote.localtunnel.me
