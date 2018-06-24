@@ -49,7 +49,7 @@ export environment variables:
 (voicenotes) > source voicenotes.env
 
 ```
-then install mysql, create a database called voicenotes 
+then install mysql, create a database called voicenotes
 
 ```
 brew install mysql
@@ -93,3 +93,22 @@ launch in terminal
 > lt -s voicenote -p 5000
 
 This launches api as https://voicenote.localtunnel.me
+
+### Usage
+
+payload: String
+
+{
+  "sender": "df459b18-9563-836d-f343-75de6b8055de",
+  "payload": {
+    "speech": "Can you show me some cats",
+    "endpoint": "https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping",
+    "state": {
+      "directory":"home/catApp",
+      "appState": {
+        "status": "OK",
+        "banned": false
+      }
+    }
+  }
+}
