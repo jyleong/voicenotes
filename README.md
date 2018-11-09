@@ -41,7 +41,9 @@ To add a required package to the project, use the `pip freeze` command:
 
 ##### Run instructions:
 Install mysql
+
 Make database named voicenotes
+
 To export env variables, copy and paste voicenotes.env from wiki into repo and change python path export environment variables:
 ```
 (voicenotes) > source voicenotes.env
