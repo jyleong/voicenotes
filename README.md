@@ -16,20 +16,19 @@ Install and configure virtualenv:
 ```
 
 # Using and Updating the Environment:
-Anytime you want to activate this environment:
+To activate this environment, run the following command in the command line:
 ```
 > source ~/Python_envs/voicenotes/bin/activate
 ```
 
-You will know if you have the environment activated or not from your
-command line prompt:
+If the environment is activated, your command line prompt will show the following:
 ```
 (voicenotes) >
 ```
 
-All the required python packages are defined in the
+The required python packages are defined in the
 requirements.txt file. Use the `pip` command to install or
-upgrade. Remember you need to do this each time someone adds a required
+upgrade. REMEMBER: you need to do this every time someone adds a required
 package to the project.
 ```
 (voicenotes) > pip3 install -r requirements.txt
@@ -40,16 +39,17 @@ To add a required package to the project, use the `pip freeze` command:
 (voicenotes) > pip3 freeze > requirements.txt
 ```
 
-Run instructions
-install mysql
-make database voicenotes
-to export env variables, copy and paste voicenotes.env from wiki into repo and change python path
-export environment variables:
+##### Run instructions:
+Install mysql
+
+Make database named voicenotes
+
+To export env variables, copy and paste voicenotes.env from wiki into repo and change python path export environment variables:
 ```
 (voicenotes) > source voicenotes.env
 
 ```
-then install mysql, create a database called voicenotes
+Then, install mysql and create a database called voicenotes
 
 ```
 brew install mysql
@@ -57,7 +57,7 @@ mysql -u root -p
 mysql -u username -p
 CREATE DATABASE voicenotes;
 ```
-Once voicenotes database has been created, now you can go to the your virtual environment
+Once the voicenotes database has been created, you can now go to the your virtual environment
 Navigate to src/ folder
 Apply current migrations
 
