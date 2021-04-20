@@ -27,7 +27,7 @@ mysql-connector-python==8.0.6
 nltk==3.2.5
 numpy==1.14.0
 parsedatetime==2.4
-py==1.4.34
+py==1.10.0
 pyactiverecord==0.4.2
 pyasn1==0.3.4
 PyAudio==0.2.11
