@@ -23,7 +23,7 @@ lxml==4.1.1
 Mako==1.0.7
 MarkupSafe==1.0
 moment==0.8.2
-mysql-connector-python==8.0.6
+mysql-connector-python==8.0.14
 nltk==3.2.5
 numpy==1.14.0
 parsedatetime==2.4
