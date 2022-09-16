@@ -20,7 +20,7 @@ itsdangerous==0.24
 Jinja2==2.10
 jmespath==0.9.3
 lxml==4.1.1
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.0
 moment==0.8.2
 mysql-connector-python==8.0.6
